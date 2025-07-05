@@ -65,21 +65,18 @@
 
         
         .cart-dropdown {
-            position: fixed;
-            left: unset;
-            right: 20px;
-            top: 70px;
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
             background: white;
             border: 2px solid black;
             width: 350px;
             padding: 0;
             display: none;
-            z-index: 4000;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             max-height: 400px;
             overflow-y: auto;
-            border-radius: 12px;
-            transition: opacity 0.25s cubic-bezier(.4,0,.2,1), top 0.25s cubic-bezier(.4,0,.2,1);
         }
         
         .cart-header {
@@ -251,19 +248,46 @@
             .form-input {
                 font-size: 15px;
                 padding: 7px;
-            }
             .cart-dropdown {
-                width: 98vw;
-                left: 1vw;
-                right: unset;
+                width: 96vw;
+                left: 2vw;
+                right: 2vw;
                 margin: 0 auto;
-                border-radius: 12px;
+                border-radius: 14px;
                 box-shadow: 0 8px 24px rgba(0,0,0,0.18);
                 padding: 0 2vw 2vw 2vw;
                 font-size: 15px;
                 max-width: 99vw;
                 min-width: unset;
                 top: 60px;
+                position: fixed;
+                z-index: 3001;
+            }
+            .cart-header, .cart-total, .cart-actions {
+                padding-left: 2vw;
+                padding-right: 2vw;
+            }
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .item-info {
+                width: 100%;
+            }
+            .remove-btn {
+                align-self: flex-end;
+                margin-top: 2px;
+            }
+            .cart-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .cart-btn, .clear-btn {
+                width: 100%;
+                font-size: 15px;
+                padding: 12px 0;
+            }
             }
             .cart-header, .cart-total, .cart-actions {
                 padding-left: 2vw;
