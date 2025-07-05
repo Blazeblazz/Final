@@ -176,8 +176,8 @@
         
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 16px;
         }
         
         @media (min-width: 768px) {
@@ -185,6 +185,70 @@
                 grid-template-columns: repeat(3, 1fr);
                 gap: 30px;
             }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 12px 8px;
+                font-size: 18px;
+            }
+            .logo {
+                font-size: 22px;
+            }
+            .cart {
+                top: 12px;
+                right: 8px;
+                padding: 7px 10px;
+                font-size: 14px;
+            }
+            .product-card {
+                padding: 10px 5px;
+            }
+            .product-title {
+                font-size: 16px;
+            }
+            .current-price {
+                font-size: 18px;
+            }
+            .compare-price {
+                font-size: 13px;
+            }
+            .buy-button {
+                font-size: 14px;
+                padding: 10px 0;
+            }
+            .footer {
+                padding: 12px 5px;
+                font-size: 13px;
+            }
+            .popup {
+                width: 95vw;
+                min-width: unset;
+                max-width: 99vw;
+                padding: 10px 2vw;
+            }
+            .popup-image {
+                width: 90vw;
+                height: 90vw;
+                max-width: 250px;
+                max-height: 250px;
+            }
+            .checkout-popup {
+                width: 98vw;
+                padding: 10px 2vw;
+                max-width: 99vw;
+            }
+            .form-input {
+                font-size: 15px;
+                padding: 7px;
+            }
+            .cart-dropdown {
+                width: 98vw;
+                right: 0;
+                left: 0;
+                margin: 0 auto;
+            }
+        }
         }
         
         .product-card {
