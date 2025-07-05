@@ -40,141 +40,6 @@
             color: black;
         }
         
-        .cart {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: white;
-            border: 2px solid black;
-            padding: 10px 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-
-        
-        .cart-count {
-            background: black;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
-            margin-left: 5px;
-        }
-        
-
-        
-        .cart-dropdown {
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 0;
-            background: white;
-            border: 2px solid black;
-            width: 350px;
-            padding: 0;
-            display: none;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        .cart-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-            font-weight: bold;
-            background: #f8f9fa;
-        }
-        
-        .cart-items {
-            padding: 15px 20px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        
-        .item-info {
-            flex: 1;
-        }
-        
-        .item-name {
-            font-weight: 500;
-            font-size: 14px;
-        }
-        
-        .item-price {
-            color: #666;
-            font-size: 13px;
-        }
-        
-        .cart-total {
-            padding: 15px 20px;
-            border-top: 1px solid #eee;
-            font-weight: bold;
-            background: #f8f9fa;
-        }
-        
-        .cart-actions {
-            padding: 15px 20px;
-            border-top: 1px solid #eee;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .cart-btn {
-            background: black;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 14px;
-            flex: 1;
-            font-weight: 500;
-        }
-        
-        .cart-btn:hover {
-            background: #333;
-        }
-        
-        .clear-btn {
-            background: #6c757d;
-        }
-        
-        .clear-btn:hover {
-            background: #5a6268;
-        }
-        
-        .remove-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            cursor: pointer;
-            font-size: 12px;
-            border-radius: 3px;
-        }
-        
-        .remove-btn:hover {
-            background: #c82333;
-        }
-        
-        .empty-cart {
-            padding: 40px 20px;
-            text-align: center;
-            color: #666;
-        }
-        
         .products-section {
             padding: 40px 20px;
             max-width: 1200px;
@@ -201,12 +66,6 @@
             }
             .logo {
                 font-size: 22px;
-            }
-            .cart {
-                top: 12px;
-                right: 8px;
-                padding: 7px 10px;
-                font-size: 14px;
             }
             .product-card {
                 padding: 10px 5px;
@@ -568,38 +427,16 @@
         }
         
         /* Popup and Cart Animations */
-        .popup, .checkout-popup, .cart-dropdown {
+        .popup, .checkout-popup {
             opacity: 0;
             transform: scale(0.96) translate(-50%, -48%);
             transition: opacity 0.25s cubic-bezier(.4,0,.2,1), transform 0.25s cubic-bezier(.4,0,.2,1);
             pointer-events: none;
         }
-        .popup.show, .checkout-popup.show, .cart-dropdown.show {
+        .popup.show, .checkout-popup.show {
             opacity: 1;
             transform: scale(1) translate(-50%, -50%);
             pointer-events: auto;
-        }
-        .cart-dropdown {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border: 2px solid black;
-            width: 95vw;
-            max-width: 400px;
-            min-width: 250px;
-            padding: 0;
-            display: none;
-            z-index: 3001;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-            max-height: 90vh;
-            overflow-y: auto;
-            border-radius: 14px;
-            transition: opacity 0.25s cubic-bezier(.4,0,.2,1), transform 0.25s cubic-bezier(.4,0,.2,1);
-        }
-        .cart-dropdown.show {
-            top: 50%;
         }
         .popup-overlay {
             transition: background 0.25s cubic-bezier(.4,0,.2,1);
@@ -609,30 +446,7 @@
 <body>
     <header class="header">
         <div class="logo">BLAZE</div>
-        <div class="cart" onclick="toggleCart()">
-            PANIER <span class="cart-count" id="cartCount">0</span>
-            <div class="cart-dropdown" id="cartDropdown">
-                <div class="cart-header">Mon Panier</div>
-                <div class="cart-items" id="cartItems"></div>
-                <div class="cart-total" id="cartTotal">Total: 0 DH</div>
-                <div class="cart-actions">
-                    <button class="cart-btn" onclick="checkout()">COMMANDER</button>
-                    <button class="cart-btn clear-btn" onclick="clearCart()">VIDER</button>
-                </div>
-            </div>
-        </div>
     </header>
-    <div class="popup-overlay" id="cartOverlay" style="display: none; z-index: 3000;">
-        <div class="cart-dropdown" id="cartDropdown">
-            <div class="cart-header">Mon Panier</div>
-            <div class="cart-items" id="cartItems"></div>
-            <div class="cart-total" id="cartTotal">Total: 0 DH</div>
-            <div class="cart-actions">
-                <button class="cart-btn" onclick="checkout()">COMMANDER</button>
-                <button class="cart-btn clear-btn" onclick="clearCart()">VIDER</button>
-            </div>
-        </div>
-    </div>
     <main class="products-section">
         <div class="products-grid">
             <div class="product-card">
@@ -769,7 +583,6 @@
     </div>
     
     <script>
-        let cart = [];
         let currentProduct = '';
         let currentAction = '';
         let selectedColor = '';
@@ -857,60 +670,6 @@
             }
             
             closePopup();
-        }
-        
-        function toggleCart() {
-            const overlay = document.getElementById('cartOverlay');
-            const dropdown = document.getElementById('cartDropdown');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            if (dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                }, 250);
-            } else {
-                if (cart.length === 0) {
-                    cartItems.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
-                } else {
-                    cartItems.innerHTML = cart.map((item, index) => 
-                        `<div class="cart-item">
-                            <div class="item-info">
-                                <div class="item-name">${item}</div>
-                                <div class="item-price">129 DH</div>
-                            </div>
-                            <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
-                        </div>`
-                    ).join('');
-                }
-                cartTotal.textContent = `Total: ${cart.length * 129} DH`;
-                overlay.style.display = 'block';
-                setTimeout(() => {
-                    dropdown.classList.add('show');
-                }, 10);
-            }
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-    // Close cart popup when clicking outside
-    document.getElementById('cartOverlay').addEventListener('click', function(e) {
-        if (e.target === this) {
-            toggleCart();
-        }
-    });
-});
-        
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            document.getElementById('cartCount').textContent = cart.length;
-            toggleCart();
-            toggleCart();
-        }
-        
-        function clearCart() {
-            cart = [];
-            document.getElementById('cartCount').textContent = '0';
-            toggleCart();
-            toggleCart();
         }
         
         function checkout() {
