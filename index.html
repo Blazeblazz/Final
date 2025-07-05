@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLAZE - T-Shirts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="T-shirts premium BLAZE. Livraison gratuite partout au Maroc. Paiement à la livraison. Stock limité !">
+    <link rel="canonical" href="https://blazeblazz.github.io/Final/">
+    <meta property="og:title" content="BLAZE - T-Shirts premium au Maroc">
+    <meta property="og:description" content="T-shirts premium BLAZE. Livraison gratuite partout au Maroc. Paiement à la livraison. Stock limité !">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blazeblazz.github.io/Final/">
+    <meta property="og:image" content="https://blazeblazz.github.io/Final/images/products/Lost%20in%20Casablanca.webp">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
     <style>
         * {
             margin: 0;
@@ -483,7 +491,7 @@
         }
     </style>
     <!-- Meta Pixel Code -->
-    <script>
+    <script defer>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -501,14 +509,17 @@
     <!-- End Meta Pixel Code -->
 </head>
 <body>
-    <header class="header">
-        <div class="logo">BLAZE</div>
+    <header class="header" role="banner">
+        <div class="logo" tabindex="0" aria-label="BLAZE, retour à l'accueil">BLAZE</div>
     </header>
+    <div id="toast" style="position:fixed;left:50%;bottom:40px;transform:translateX(-50%);background:#222;color:#fff;padding:14px 28px;border-radius:24px;font-size:16px;z-index:9999;display:none;box-shadow:0 4px 24px rgba(0,0,0,0.18);transition:opacity 0.3s;opacity:0;pointer-events:none;max-width:90vw;text-align:center;"></div>
+    <div id="spinner" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9998;background:rgba(255,255,255,0.6);align-items:center;justify-content:center;"><div style="border:6px solid #eee;border-top:6px solid #27ae60;border-radius:50%;width:48px;height:48px;animation:spin 1s linear infinite;"></div></div>
+    <style>@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}</style>
     <main class="products-section">
         <div class="products-grid">
-            <div class="product-card">
-                <span class="urgency-badge">STOCK LIMITÉ</span>
-                <img src="images/products/Lost in Casablanca.webp" alt="T-Shirt Premium" class="product-image">
+            <div class="product-card" tabindex="0" aria-label="Lost in Casablanca, T-shirt premium, 129 DH, livraison gratuite, stock limité">
+                <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
+                <img src="images/products/Lost in Casablanca.webp" alt="T-shirt Lost in Casablanca, visuel du produit" class="product-image" loading="lazy">
                 <h3 class="product-title">Lost in Casablanca</h3>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
@@ -519,9 +530,9 @@
                 <button class="buy-button" onclick="directOrder('Lost in Casablanca')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
             
-            <div class="product-card">
-                <span class="urgency-badge">STOCK LIMITÉ</span>
-                <img src="images/products/Rise.webp" alt="T-Shirt Premium" class="product-image">
+            <div class="product-card" tabindex="0" aria-label="Rise, T-shirt premium, 129 DH, livraison gratuite, stock limité">
+                <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
+                <img src="images/products/Rise.webp" alt="T-shirt Rise, visuel du produit" class="product-image" loading="lazy">
                 <h3 class="product-title">Rise</h3>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
@@ -532,9 +543,9 @@
                 <button class="buy-button" onclick="directOrder('Rise')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
             
-            <div class="product-card">
-                <span class="urgency-badge">STOCK LIMITÉ</span>
-                <img src="images/products/Rush.webp" alt="T-Shirt Premium" class="product-image">
+            <div class="product-card" tabindex="0" aria-label="Rush, T-shirt premium, 129 DH, livraison gratuite, stock limité">
+                <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
+                <img src="images/products/Rush.webp" alt="T-shirt Rush, visuel du produit" class="product-image" loading="lazy">
                 <h3 class="product-title">Rush</h3>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
@@ -545,9 +556,9 @@
                 <button class="buy-button" onclick="directOrder('Rush')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
             
-            <div class="product-card">
-                <span class="urgency-badge">STOCK LIMITÉ</span>
-                <img src="images/products/SEGRETO.webp" alt="T-Shirt Premium" class="product-image">
+            <div class="product-card" tabindex="0" aria-label="Segreto, T-shirt premium, 129 DH, livraison gratuite, stock limité">
+                <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
+                <img src="images/products/SEGRETO.webp" alt="T-shirt Segreto, visuel du produit" class="product-image" loading="lazy">
                 <h3 class="product-title">Segreto</h3>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
@@ -558,9 +569,9 @@
                 <button class="buy-button" onclick="directOrder('SEGRETO')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
             
-            <div class="product-card">
-                <span class="urgency-badge">STOCK LIMITÉ</span>
-                <img src="images/products/Trust-The-Process.webp" alt="T-Shirt Premium" class="product-image">
+            <div class="product-card" tabindex="0" aria-label="Trust The Process, T-shirt premium, 129 DH, livraison gratuite, stock limité">
+                <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
+                <img src="images/products/Trust-The-Process.webp" alt="T-shirt Trust The Process, visuel du produit" class="product-image" loading="lazy">
                 <h3 class="product-title">Trust The Process</h3>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
@@ -571,9 +582,9 @@
                 <button class="buy-button" onclick="directOrder('Trust-The-Process')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
             
-            <div class="product-card">
-                <span class="urgency-badge">STOCK LIMITÉ</span>
-                <img src="images/products/Wild-Flowers.webp" alt="T-Shirt Premium" class="product-image">
+            <div class="product-card" tabindex="0" aria-label="Wild Flowers, T-shirt premium, 129 DH, livraison gratuite, stock limité">
+                <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
+                <img src="images/products/Wild-Flowers.webp" alt="T-shirt Wild Flowers, visuel du produit" class="product-image" loading="lazy">
                 <h3 class="product-title">Wild Flowers</h3>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
@@ -586,60 +597,63 @@
         </div>
     </main>
     
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <p>&copy; 2025 BLAZE. Tous droits réservés.</p>
     </footer>
     
-    <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle" style="display:none;">
         <div class="popup">
-            <img id="popupImage" class="popup-image" src="" alt="Product">
+            <img id="popupImage" class="popup-image" src="" alt="Aperçu du produit sélectionné">
             <h3 id="popupTitle">Choisir les options</h3>
             <div class="popup-section">
                 <div class="options-row">
                     <div>
-                        <label>Couleur:</label>
-                        <div class="color-options"></div>
+                        <label for="colorOptions">Couleur:</label>
+                        <div class="color-options" id="colorOptions" role="radiogroup" aria-label="Choix de la couleur"></div>
                     </div>
                     <div class="quantity-section">
-                        <label>Quantité:</label>
+                        <label for="quantityInput">Quantité:</label>
                         <div class="quantity-controls">
-                            <button type="button" class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-                            <input type="number" class="quantity-input" id="quantityInput" min="1" max="10" value="1">
-                            <button type="button" class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                            <button type="button" class="quantity-btn" aria-label="Diminuer la quantité" onclick="changeQuantity(-1)">-</button>
+                            <input type="number" class="quantity-input" id="quantityInput" min="1" max="10" value="1" aria-label="Quantité" inputmode="numeric" pattern="[0-9]*" required>
+                            <button type="button" class="quantity-btn" aria-label="Augmenter la quantité" onclick="changeQuantity(1)">+</button>
                         </div>
                     </div>
                 </div>
                 <div class="size-info">Taille: One-Size Unisex</div>
             </div>
             <div class="popup-actions">
-                <button class="popup-btn" onclick="closePopup()">Annuler</button>
-                <button class="popup-btn confirm-btn" onclick="confirmSelection()">Confirmer</button>
+                <button class="popup-btn" onclick="closePopup()" aria-label="Annuler la sélection">Annuler</button>
+                <button class="popup-btn confirm-btn" id="popupConfirmBtn" onclick="confirmSelection()">Confirmer</button>
             </div>
         </div>
     </div>
     
-    <div class="popup-overlay" id="checkoutOverlay" style="display: none;">
+    <div class="popup-overlay" id="checkoutOverlay" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" style="display: none;">
         <div class="checkout-popup">
-            <h3>Finaliser la commande</h3>
+            <h3 id="checkoutTitle">Finaliser la commande</h3>
             <div class="order-summary" id="orderSummary"></div>
-            <div class="checkout-form">
+            <form class="checkout-form" id="checkoutForm" autocomplete="on" novalidate onsubmit="event.preventDefault(); submitOrder();">
                 <div class="form-group">
-                    <label>Nom complet:</label>
-                    <input type="text" class="form-input" id="customerName" required>
+                    <label for="customerName">Nom complet:</label>
+                    <input type="text" class="form-input" id="customerName" name="customerName" required autocomplete="name" aria-required="true" aria-describedby="nameError">
+                    <span class="form-error" id="nameError" style="display:none;color:#e53935;font-size:13px;"></span>
                 </div>
                 <div class="form-group">
-                    <label>Ville:</label>
-                    <input type="text" class="form-input" id="customerCity" required>
+                    <label for="customerCity">Ville:</label>
+                    <input type="text" class="form-input" id="customerCity" name="customerCity" required autocomplete="address-level2" aria-required="true" aria-describedby="cityError">
+                    <span class="form-error" id="cityError" style="display:none;color:#e53935;font-size:13px;"></span>
                 </div>
                 <div class="form-group">
-                    <label>Numéro de téléphone:</label>
-                    <input type="tel" class="form-input" id="customerPhone" required>
+                    <label for="customerPhone">Numéro de téléphone:</label>
+                    <input type="tel" class="form-input" id="customerPhone" name="customerPhone" required autocomplete="tel" pattern="^0[5-7][0-9]{8}$" aria-required="true" inputmode="tel" aria-describedby="phoneError">
+                    <span class="form-error" id="phoneError" style="display:none;color:#e53935;font-size:13px;"></span>
                 </div>
-            </div>
-            <div class="popup-actions">
-                <button class="popup-btn" onclick="closeCheckout()">Annuler</button>
-                <button class="popup-btn confirm-btn" onclick="submitOrder()">Confirmer la commande</button>
-            </div>
+                <div class="popup-actions">
+                    <button type="button" class="popup-btn" onclick="closeCheckout()" aria-label="Annuler la commande">Annuler</button>
+                    <button type="submit" class="popup-btn confirm-btn" id="checkoutConfirmBtn">Confirmer la commande</button>
+                </div>
+            </form>
         </div>
     </div>
     
@@ -654,6 +668,27 @@
             openPopup(productName);
         }
         
+        // Accessibility: trap focus in popup
+        function trapFocus(element) {
+            const focusableEls = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstFocusableEl = focusableEls[0];
+            const lastFocusableEl = focusableEls[focusableEls.length - 1];
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusableEl) {
+                            e.preventDefault();
+                            lastFocusableEl.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusableEl) {
+                            e.preventDefault();
+                            firstFocusableEl.focus();
+                        }
+                    }
+                }
+            });
+        }
         function openPopup(productName) {
             const imageMap = {
                 'Lost in Casablanca': 'images/products/Lost in Casablanca.webp',
@@ -675,12 +710,16 @@
             document.getElementById('popupTitle').textContent = `${productName} - Choisir les options`;
             const colorOptions = document.querySelector('.color-options');
             colorOptions.innerHTML = colorMap[productName].map(color => 
-                `<button class="color-btn" onclick="selectColor('${color}')">${color}</button>`
+                `<button class="color-btn" onclick="selectColor('${color}')" aria-label="Choisir la couleur ${color}" aria-checked="false" role="radio">${color}</button>`
             ).join('');
             const overlay = document.getElementById('popupOverlay');
             overlay.style.display = 'block';
             setTimeout(() => {
                 overlay.querySelector('.popup').classList.add('show');
+                // Focus first color button
+                const firstColorBtn = colorOptions.querySelector('.color-btn');
+                if (firstColorBtn) firstColorBtn.focus();
+                trapFocus(overlay.querySelector('.popup'));
             }, 10);
             selectedColor = '';
             document.getElementById('quantityInput').value = 1;
@@ -697,8 +736,14 @@
         
         function selectColor(color) {
             selectedColor = color;
-            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('selected'));
-            event.target.classList.add('selected');
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.setAttribute('aria-checked', 'false');
+            });
+            if (event && event.target) {
+                event.target.classList.add('selected');
+                event.target.setAttribute('aria-checked', 'true');
+            }
         }
         
         function changeQuantity(delta) {
@@ -759,11 +804,18 @@
         }
         
         function showDirectCheckout(product, color, quantity) {
+            // Sanitize for display
+            function escapeHTML(str) {
+                return str.replace(/[&<>"']/g, function(tag) {
+                    const chars = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'};
+                    return chars[tag] || tag;
+                });
+            }
             const orderSummary = document.getElementById('orderSummary');
             const total = quantity * 129;
             orderSummary.innerHTML = `
                 <h4>Résumé de la commande:</h4>
-                <div class="summary-item"><span>${product} - ${color}</span><span>129 DH x ${quantity}</span></div>
+                <div class="summary-item"><span>${escapeHTML(product)} - ${escapeHTML(color)}</span><span>129 DH x ${quantity}</span></div>
                 <div class="summary-item"><span>Sous-total:</span><span>${total} DH</span></div>
                 <div class="summary-item"><span>Livraison:</span><span style="color: green;">GRATUITE</span></div>
                 <div class="summary-item summary-total"><span>Total:</span><span>${total} DH</span></div>
@@ -772,17 +824,83 @@
             overlay.style.display = 'block';
             setTimeout(() => {
                 overlay.querySelector('.checkout-popup').classList.add('show');
+                document.getElementById('customerName').focus();
+                trapFocus(overlay.querySelector('.checkout-popup'));
             }, 10);
+            // Clear previous errors
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('cityError').style.display = 'none';
+            document.getElementById('phoneError').style.display = 'none';
+            document.getElementById('customerName').setAttribute('aria-invalid', 'false');
+            document.getElementById('customerCity').setAttribute('aria-invalid', 'false');
+            document.getElementById('customerPhone').setAttribute('aria-invalid', 'false');
+            document.getElementById('checkoutConfirmBtn').disabled = false;
         }
         
-        function submitOrder() {
-            const name = document.getElementById('customerName').value;
-            const city = document.getElementById('customerCity').value;
-            const phone = document.getElementById('customerPhone').value;
-            if (!name || !city || !phone) {
-                alert('Veuillez remplir tous les champs!');
-                return;
+        function validateForm() {
+            let valid = true;
+            const name = document.getElementById('customerName');
+            const city = document.getElementById('customerCity');
+            const phone = document.getElementById('customerPhone');
+            // Name
+            if (!name.value.trim()) {
+                document.getElementById('nameError').textContent = 'Veuillez entrer votre nom.';
+                document.getElementById('nameError').style.display = 'block';
+                name.setAttribute('aria-invalid', 'true');
+                valid = false;
+            } else {
+                document.getElementById('nameError').style.display = 'none';
+                name.setAttribute('aria-invalid', 'false');
             }
+            // City
+            if (!city.value.trim()) {
+                document.getElementById('cityError').textContent = 'Veuillez entrer votre ville.';
+                document.getElementById('cityError').style.display = 'block';
+                city.setAttribute('aria-invalid', 'true');
+                valid = false;
+            } else {
+                document.getElementById('cityError').style.display = 'none';
+                city.setAttribute('aria-invalid', 'false');
+            }
+            // Phone
+            const phonePattern = /^0[5-7][0-9]{8}$/;
+            if (!phone.value.trim()) {
+                document.getElementById('phoneError').textContent = 'Veuillez entrer votre numéro de téléphone.';
+                document.getElementById('phoneError').style.display = 'block';
+                phone.setAttribute('aria-invalid', 'true');
+                valid = false;
+            } else if (!phonePattern.test(phone.value.trim())) {
+                document.getElementById('phoneError').textContent = 'Numéro de téléphone invalide (ex: 06XXXXXXXX).';
+                document.getElementById('phoneError').style.display = 'block';
+                phone.setAttribute('aria-invalid', 'true');
+                valid = false;
+            } else {
+                document.getElementById('phoneError').style.display = 'none';
+                phone.setAttribute('aria-invalid', 'false');
+            }
+            return valid;
+        }
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.background = isError ? '#e53935' : '#222';
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.opacity = 1; }, 10);
+            setTimeout(() => { toast.style.opacity = 0; setTimeout(()=>{toast.style.display='none';}, 350); }, 3500);
+        }
+        function showSpinner(show) {
+            document.getElementById('spinner').style.display = show ? 'flex' : 'none';
+        }
+        function submitOrder() {
+            const confirmBtn = document.getElementById('checkoutConfirmBtn');
+            if (confirmBtn.disabled) return;
+            if (!validateForm()) return;
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Envoi...';
+            showSpinner(true);
+            const name = document.getElementById('customerName').value.trim();
+            const city = document.getElementById('customerCity').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
             // Collect product info (direct order only)
             let products = [];
             const summaryDiv = document.querySelector('#orderSummary .summary-item');
@@ -801,7 +919,10 @@
                 }
             }
             if (products.length === 0) {
-                alert('Erreur: impossible de récupérer les informations du produit.');
+                showToast('Erreur: impossible de récupérer les informations du produit.', true);
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Confirmer la commande';
+                showSpinner(false);
                 return;
             }
             const orderData = {
@@ -832,17 +953,57 @@
                     body: JSON.stringify(orders)
                 })
                 .then(() => {
-                    alert('Commande envoyée avec succès! Nous vous contacterons bientôt.');
+                    // Security: clear sensitive fields after order
+                    document.getElementById('customerName').value = '';
+                    document.getElementById('customerCity').value = '';
+                    document.getElementById('customerPhone').value = '';
+                    confirmBtn.disabled = false;
+                    confirmBtn.textContent = 'Confirmer la commande';
+                    showSpinner(false);
+                    showToast('Commande envoyée avec succès! Nous vous contacterons bientôt.');
                     closeCheckout();
                 })
                 .catch(() => {
-                    alert('Erreur lors de l\'envoi de la commande. Veuillez réessayer.');
+                    showToast('Erreur lors de l\'envoi de la commande. Veuillez réessayer.', true);
+                    confirmBtn.disabled = false;
+                    confirmBtn.textContent = 'Confirmer la commande';
+                    showSpinner(false);
                 });
             })
             .catch(() => {
-                alert('Erreur lors de la connexion au serveur. Veuillez réessayer.');
+                showToast('Erreur lors de la connexion au serveur. Veuillez réessayer.', true);
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Confirmer la commande';
+                showSpinner(false);
             });
         }
+        // UI polish: focus outline for all buttons/inputs and urgency badge on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.innerHTML = `
+                button:focus, .color-btn:focus, .quantity-btn:focus, .popup-btn:focus, .form-input:focus {
+                    outline: 2px solid #27ae60 !important;
+                    outline-offset: 2px;
+                }
+                .form-input[aria-invalid="true"] {
+                    border-color: #e53935 !important;
+                }
+                .urgency-badge {
+                    box-shadow: 0 4px 16px rgba(229,57,53,0.18);
+                    font-size: 15px !important;
+                    padding: 7px 18px !important;
+                }
+                @media (max-width: 600px) {
+                    .urgency-badge {
+                        font-size: 13px !important;
+                        padding: 6px 12px !important;
+                        top: 6px !important;
+                        right: 6px !important;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
                     </script>
                 </body>
                 </html>
