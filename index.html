@@ -65,17 +65,25 @@
 
         
         .cart-dropdown {
-            position: absolute;
-            top: calc(100% + 10px);
+            position: fixed;
+            top: 0;
             right: 0;
+            height: 100vh;
+            width: 370px;
+            max-width: 98vw;
             background: white;
-            border: 2px solid black;
-            width: 350px;
+            border-left: 2px solid black;
+            border-top: none;
+            border-bottom: none;
+            border-right: none;
+            box-shadow: -8px 0 24px rgba(0,0,0,0.18);
             padding: 0;
             display: none;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-height: 400px;
+            z-index: 4000;
+            transition: transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.25s cubic-bezier(.4,0,.2,1);
+            transform: translateX(100%);
+            opacity: 0;
+            max-height: 100vh;
             overflow-y: auto;
         }
         
@@ -576,14 +584,8 @@
         }
         .popup.show, .checkout-popup.show, .cart-dropdown.show {
             opacity: 1;
-            transform: scale(1) translate(-50%, -50%);
+            transform: translateX(0);
             pointer-events: auto;
-        }
-        .cart-dropdown {
-            transition: opacity 0.25s cubic-bezier(.4,0,.2,1), top 0.25s cubic-bezier(.4,0,.2,1);
-        }
-        .cart-dropdown.show {
-            top: calc(100% + 10px);
         }
         .popup-overlay {
             transition: background 0.25s cubic-bezier(.4,0,.2,1);
@@ -595,15 +597,16 @@
         <div class="logo">BLAZE</div>
         <div class="cart" onclick="toggleCart()">
             PANIER <span class="cart-count" id="cartCount">0</span>
-            <div class="cart-dropdown" id="cartDropdown">
-                <div class="cart-header">Mon Panier</div>
-                <div class="cart-items" id="cartItems"></div>
-                <div class="cart-total" id="cartTotal">Total: 0 DH</div>
-                <div class="cart-actions">
-                    <button class="cart-btn" onclick="checkout()">COMMANDER</button>
-                    <button class="cart-btn clear-btn" onclick="clearCart()">VIDER</button>
-                </div>
+        </div>
+        <div class="cart-dropdown" id="cartDropdown">
+            <div class="cart-header">Mon Panier <button style="float:right;font-size:22px;background:none;border:none;cursor:pointer;" onclick="toggleCart()">&times;</button></div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-total" id="cartTotal">Total: 0 DH</div>
+            <div class="cart-actions">
+                <button class="cart-btn" onclick="checkout()">COMMANDER</button>
+                <button class="cart-btn clear-btn" onclick="clearCart()">VIDER</button>
             </div>
+        </div>
         </div>
     </header>
     
@@ -705,7 +708,11 @@
                     </div>
                     <div class="quantity-section">
                         <label>Quantité:</label>
-                        <input type="number" class="quantity-input" id="quantityInput" min="1" max="10" value="1">
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <button type="button" class="popup-btn" style="width:32px;padding:0 0 2px 0;font-size:22px;" onclick="changeQuantity(-1)">-</button>
+                            <input type="number" class="quantity-input" id="quantityInput" min="1" max="10" value="1" style="width:60px;text-align:center;">
+                            <button type="button" class="popup-btn" style="width:32px;padding:0 0 2px 0;font-size:22px;" onclick="changeQuantity(1)">+</button>
+                        </div>
                     </div>
                 </div>
                 <div class="size-info">Taille: One-Size Unisex</div>
@@ -841,7 +848,7 @@
                 dropdown.classList.remove('show');
                 setTimeout(() => {
                     dropdown.style.display = 'none';
-                }, 250);
+                }, 350);
             } else {
                 if (cart.length === 0) {
                     cartItems.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
@@ -862,6 +869,14 @@
                     dropdown.classList.add('show');
                 }, 10);
             }
+        function changeQuantity(delta) {
+            const input = document.getElementById('quantityInput');
+            let val = parseInt(input.value) || 1;
+            val += delta;
+            if (val < 1) val = 1;
+            if (val > 10) val = 10;
+            input.value = val;
+        }
         }
         
         function removeFromCart(index) {
