@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLAZE - T-Shirts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100vw;
+            min-height: 100vh;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Helvetica', sans-serif;
+            background-color: white;
+            color: black;
+        }
+        
+        .header {
+            padding: 20px;
+            border-bottom: 2px solid black;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 3000;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .cart {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 2px solid black;
+            padding: 10px 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+
+        
+        .cart-count {
+            background: black;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        
+
+        
+        .cart-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: white;
+            border: 2px solid black;
+            width: 350px;
+            padding: 0;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .cart-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            font-weight: bold;
+            background: #f8f9fa;
+        }
+        
+        .cart-items {
+            padding: 15px 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-info {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .item-price {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .cart-total {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            font-weight: bold;
+            background: #f8f9fa;
+        }
+        
+        .cart-actions {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .cart-btn {
+            background: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .cart-btn:hover {
+            background: #333;
+        }
+        
+        .clear-btn {
+            background: #6c757d;
+        }
+        
+        .clear-btn:hover {
+            background: #5a6268;
+        }
+        
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+        
+        .remove-btn:hover {
+            background: #c82333;
+        }
+        
+        .empty-cart {
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+        }
+        
+        .products-section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 12px 8px;
+                font-size: 18px;
+            }
+            .logo {
+                font-size: 22px;
+            }
+            .cart {
+                top: 12px;
+                right: 8px;
+                padding: 7px 10px;
+                font-size: 14px;
+            }
+            .product-card {
+                padding: 10px 5px;
+            }
+            .product-title {
+                font-size: 16px;
+            }
+            .current-price {
+                font-size: 18px;
+            }
+            .compare-price {
+                font-size: 13px;
+            }
+            .buy-button {
+                font-size: 14px;
+                padding: 10px 0;
+            }
+            .footer {
+                padding: 12px 5px;
+                font-size: 13px;
+            }
+            .popup {
+                width: 95vw;
+                min-width: unset;
+                max-width: 99vw;
+                padding: 10px 2vw;
+            }
+            .popup-image {
+                width: 90vw;
+                height: 90vw;
+                max-width: 250px;
+                max-height: 250px;
+            }
+            .checkout-popup {
+                width: 98vw;
+                padding: 10px 2vw;
+                max-width: 99vw;
+            }
+            .form-input {
+                font-size: 15px;
+                padding: 7px;
+            }
+            .cart-dropdown {
+                width: 98vw;
+                right: 0;
+                left: 0;
+                margin: 0 auto;
+            }
+            .products-section {
+                padding: 10px 2vw;
+                width: 100vw;
+                box-sizing: border-box;
+            }
+            .products-grid {
+                width: 100vw;
+                margin-left: -2vw;
+                margin-right: -2vw;
+                box-sizing: border-box;
+            }
+            body {
+                width: 100vw;
+                overflow-x: hidden;
+            }
+        }
+        
+        .product-card {
+            border: 2px solid black;
+            padding: 20px;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border: 1px solid black;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+        
+        .product-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .price-section {
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .compare-price {
+            font-size: 16px;
+            text-decoration: line-through;
+            color: #666;
+            margin-left: 10px;
+        }
+        
+        .free-delivery {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .payment-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .buy-button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .buy-button:hover {
+            background-color: #333;
+        }
+        
+        .footer {
+            border-top: 2px solid black;
+            font-family: 'poppins', 'Helvetica', sans-serif;
+            font-weight: 600;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 2000;
+        }
+        
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 2px solid black;
+            padding: 30px;
+            width: 450px;
+            text-align: center;
+        }
+        
+        .popup-image {
+            width: 250px;
+            height: 250px;
+            border: 1px solid black;
+            margin: 0 auto 20px;
+            object-fit: contain;
+        }
+        
+        .popup h3 {
+            margin-bottom: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid black;
+            padding-bottom: 15px;
+        }
+        
+        .popup-section {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .popup-section label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .options-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .quantity-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .size-info {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .color-btn {
+            padding: 8px 15px;
+            border: 2px solid black;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .color-btn.selected {
+            background: black;
+            color: white;
+        }
+        
+        .quantity-input {
+            width: 80px;
+            padding: 8px;
+            border: 2px solid black;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .popup-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+        }
+        
+        .popup-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid black;
+            background: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-btn:hover {
+            background: black;
+            color: white;
+        }
+        
+        .confirm-btn {
+            background: #27ae60;
+            border-color: #27ae60;
+            color: white;
+        }
+        
+        .confirm-btn:hover {
+            background: #1e8449;
+        }
+        
+        .checkout-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 2px solid black;
+            padding: 30px;
+            width: 500px;
+            text-align: center;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .checkout-form {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid black;
+            font-weight: 500;
+        }
+        
+        .order-summary {
+            border: 1px solid black;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .summary-total {
+            border-top: 1px solid black;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">BLAZE</div>
+        <div class="cart" onclick="toggleCart()">
+            PANIER <span class="cart-count" id="cartCount">0</span>
+            <div class="cart-dropdown" id="cartDropdown">
+                <div class="cart-header">Mon Panier</div>
+                <div class="cart-items" id="cartItems"></div>
+                <div class="cart-total" id="cartTotal">Total: 0 DH</div>
+                <div class="cart-actions">
+                    <button class="cart-btn" onclick="checkout()">COMMANDER</button>
+                    <button class="cart-btn clear-btn" onclick="clearCart()">VIDER</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="products-section">
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="images/products/Lost in Casablanca.webp" alt="T-Shirt Premium" class="product-image">
+                <h3 class="product-title">Lost in Casablanca</h3>
+                <div class="price-section">
+                    <span class="current-price">129 DH</span>
+                    <span class="compare-price">179 DH</span>
+                </div>
+                <div class="free-delivery">LIVRAISON GRATUITE</div>
+                <div class="payment-info">Paiement à la livraison uniquement</div>
+                <button class="buy-button" onclick="addToCart('Lost in Casablanca')">AJOUTER AU PANIER</button>
+                <button class="buy-button" onclick="directOrder('Lost in Casablanca')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="images/products/Rise.webp" alt="T-Shirt Premium" class="product-image">
+                <h3 class="product-title">Rise</h3>
+                <div class="price-section">
+                    <span class="current-price">129 DH</span>
+                    <span class="compare-price">179 DH</span>
+                </div>
+                <div class="free-delivery">LIVRAISON GRATUITE</div>
+                <div class="payment-info">Paiement à la livraison uniquement</div>
+                <button class="buy-button" onclick="addToCart('Rise')">AJOUTER AU PANIER</button>
+                <button class="buy-button" onclick="directOrder('Rise')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="images/products/Rush.webp" alt="T-Shirt Premium" class="product-image">
+                <h3 class="product-title">Rush</h3>
+                <div class="price-section">
+                    <span class="current-price">129 DH</span>
+                    <span class="compare-price">179 DH</span>
+                </div>
+                <div class="free-delivery">LIVRAISON GRATUITE</div>
+                <div class="payment-info">Paiement à la livraison uniquement</div>
+                <button class="buy-button" onclick="addToCart('Rush')">AJOUTER AU PANIER</button>
+                <button class="buy-button" onclick="directOrder('Rush')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="images/products/SEGRETO.webp" alt="T-Shirt Premium" class="product-image">
+                <h3 class="product-title">Segreto</h3>
+                <div class="price-section">
+                    <span class="current-price">129 DH</span>
+                    <span class="compare-price">179 DH</span>
+                </div>
+                <div class="free-delivery">LIVRAISON GRATUITE</div>
+                <div class="payment-info">Paiement à la livraison uniquement</div>
+                <button class="buy-button" onclick="addToCart('SEGRETO')">AJOUTER AU PANIER</button>
+                <button class="buy-button" onclick="directOrder('SEGRETO')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="images/products/Trust-The-Process.webp" alt="T-Shirt Premium" class="product-image">
+                <h3 class="product-title">Trust The Process</h3>
+                <div class="price-section">
+                    <span class="current-price">129 DH</span>
+                    <span class="compare-price">179 DH</span>
+                </div>
+                <div class="free-delivery">LIVRAISON GRATUITE</div>
+                <div class="payment-info">Paiement à la livraison uniquement</div>
+                <button class="buy-button" onclick="addToCart('Trust-The-Process')">AJOUTER AU PANIER</button>
+                <button class="buy-button" onclick="directOrder('Trust-The-Process')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="images/products/Wild-Flowers.webp" alt="T-Shirt Premium" class="product-image">
+                <h3 class="product-title">Wild Flowers</h3>
+                <div class="price-section">
+                    <span class="current-price">129 DH</span>
+                    <span class="compare-price">179 DH</span>
+                </div>
+                <div class="free-delivery">LIVRAISON GRATUITE</div>
+                <div class="payment-info">Paiement à la livraison uniquement</div>
+                <button class="buy-button" onclick="addToCart('Wild-Flowers')">AJOUTER AU PANIER</button>
+                <button class="buy-button" onclick="directOrder('Wild-Flowers')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2025 BLAZE. Tous droits réservés.</p>
+    </footer>
+    
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <img id="popupImage" class="popup-image" src="" alt="Product">
+            <h3 id="popupTitle">Choisir les options</h3>
+            <div class="popup-section">
+                <div class="options-row">
+                    <div>
+                        <label>Couleur:</label>
+                        <div class="color-options"></div>
+                    </div>
+                    <div class="quantity-section">
+                        <label>Quantité:</label>
+                        <input type="number" class="quantity-input" id="quantityInput" min="1" max="10" value="1">
+                    </div>
+                </div>
+                <div class="size-info">Taille: One-Size Unisex</div>
+            </div>
+            <div class="popup-actions">
+                <button class="popup-btn" onclick="closePopup()">Annuler</button>
+                <button class="popup-btn confirm-btn" onclick="confirmSelection()">Confirmer</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="popup-overlay" id="checkoutOverlay" style="display: none;">
+        <div class="checkout-popup">
+            <h3>Finaliser la commande</h3>
+            <div class="order-summary" id="orderSummary"></div>
+            <div class="checkout-form">
+                <div class="form-group">
+                    <label>Nom complet:</label>
+                    <input type="text" class="form-input" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label>Ville:</label>
+                    <input type="text" class="form-input" id="customerCity" required>
+                </div>
+                <div class="form-group">
+                    <label>Numéro de téléphone:</label>
+                    <input type="tel" class="form-input" id="customerPhone" required>
+                </div>
+            </div>
+            <div class="popup-actions">
+                <button class="popup-btn" onclick="closeCheckout()">Annuler</button>
+                <button class="popup-btn confirm-btn" onclick="submitOrder()">Confirmer la commande</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let cart = [];
+        let currentProduct = '';
+        let currentAction = '';
+        let selectedColor = '';
+        
+        function addToCart(productName) {
+            currentProduct = productName;
+            currentAction = 'cart';
+            openPopup(productName);
+        }
+        
+        function directOrder(productName) {
+            currentProduct = productName;
+            currentAction = 'order';
+            openPopup(productName);
+        }
+        
+        function openPopup(productName) {
+            const imageMap = {
+                'Lost in Casablanca': 'images/products/Lost in Casablanca.webp',
+                'Rise': 'images/products/Rise.webp',
+                'Rush': 'images/products/Rush.webp',
+                'SEGRETO': 'images/products/SEGRETO.webp',
+                'Trust-The-Process': 'images/products/Trust-The-Process.webp',
+                'Wild-Flowers': 'images/products/Wild-Flowers.webp'
+            };
+            
+            const colorMap = {
+                'Lost in Casablanca': ['BLANC', 'BEIGE'],
+                'Rise': ['BLANC', 'BEIGE'],
+                'Rush': ['BEIGE', 'BLANC', 'NOIR'],
+                'SEGRETO': ['BLANC', 'BEIGE', 'NOIR'],
+                'Trust-The-Process': ['NOIR', 'BLANC'],
+                'Wild-Flowers': ['NOIR', 'BLANC']
+            };
+            
+            document.getElementById('popupImage').src = imageMap[productName];
+            document.getElementById('popupTitle').textContent = `${productName} - Choisir les options`;
+            
+            const colorOptions = document.querySelector('.color-options');
+            colorOptions.innerHTML = colorMap[productName].map(color => 
+                `<button class="color-btn" onclick="selectColor('${color}')">${color}</button>`
+            ).join('');
+            
+            document.getElementById('popupOverlay').style.display = 'block';
+            selectedColor = '';
+            document.getElementById('quantityInput').value = 1;
+        }
+        
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+        }
+        
+        function selectColor(color) {
+            selectedColor = color;
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+        
+        function confirmSelection() {
+            const quantity = parseInt(document.getElementById('quantityInput').value);
+            
+            if (!selectedColor) {
+                alert('Veuillez choisir une couleur!');
+                return;
+            }
+            
+            if (quantity < 1 || quantity > 10) {
+                alert('Quantité invalide (1-10)!');
+                return;
+            }
+            
+            if (currentAction === 'cart') {
+                for (let i = 0; i < quantity; i++) {
+                    cart.push(`${currentProduct} - ${selectedColor}`);
+                }
+                document.getElementById('cartCount').textContent = cart.length;
+                alert(`${quantity}x ${currentProduct} (${selectedColor}) ajouté au panier!`);
+            } else {
+                showDirectCheckout(currentProduct, selectedColor, quantity);
+            }
+            
+            closePopup();
+        }
+        
+        function toggleCart() {
+            const dropdown = document.getElementById('cartDropdown');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                if (cart.length === 0) {
+                    cartItems.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
+                } else {
+                    cartItems.innerHTML = cart.map((item, index) => 
+                        `<div class="cart-item">
+                            <div class="item-info">
+                                <div class="item-name">${item}</div>
+                                <div class="item-price">129 DH</div>
+                            </div>
+                            <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
+                        </div>`
+                    ).join('');
+                }
+                cartTotal.textContent = `Total: ${cart.length * 129} DH`;
+                dropdown.style.display = 'block';
+            }
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            document.getElementById('cartCount').textContent = cart.length;
+            toggleCart();
+            toggleCart();
+        }
+        
+        function clearCart() {
+            cart = [];
+            document.getElementById('cartCount').textContent = '0';
+            toggleCart();
+            toggleCart();
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide');
+            } else {
+                showCheckoutForm();
+            }
+        }
+        
+        function showCheckoutForm() {
+            const orderSummary = document.getElementById('orderSummary');
+            const subtotal = cart.length * 129;
+            
+            orderSummary.innerHTML = `
+                <h4>Résumé de la commande:</h4>
+                ${cart.map(item => `<div class="summary-item"><span>${item}</span><span>129 DH</span></div>`).join('')}
+                <div class="summary-item"><span>Sous-total:</span><span>${subtotal} DH</span></div>
+                <div class="summary-item"><span>Livraison:</span><span style="color: green;">GRATUITE</span></div>
+                <div class="summary-item summary-total"><span>Total:</span><span>${subtotal} DH</span></div>
+            `;
+            
+            document.getElementById('checkoutOverlay').style.display = 'block';
+        }
+        
+        function closeCheckout() {
+            document.getElementById('checkoutOverlay').style.display = 'none';
+        }
+        
+        function showDirectCheckout(product, color, quantity) {
+            const orderSummary = document.getElementById('orderSummary');
+            const total = quantity * 129;
+            
+            orderSummary.innerHTML = `
+                <h4>Résumé de la commande:</h4>
+                <div class="summary-item"><span>${product} - ${color}</span><span>129 DH x ${quantity}</span></div>
+                <div class="summary-item"><span>Sous-total:</span><span>${total} DH</span></div>
+                <div class="summary-item"><span>Livraison:</span><span style="color: green;">GRATUITE</span></div>
+                <div class="summary-item summary-total"><span>Total:</span><span>${total} DH</span></div>
+            `;
+            
+            document.getElementById('checkoutOverlay').style.display = 'block';
+        }
+        
+        function submitOrder() {
+            const name = document.getElementById('customerName').value;
+            const city = document.getElementById('customerCity').value;
+            const phone = document.getElementById('customerPhone').value;
+            if (!name || !city || !phone) {
+                alert('Veuillez remplir tous les champs!');
+                return;
+            }
+            // Collect product info
+            let products = [];
+            if (cart.length > 0) {
+                // Cart order
+                cart.forEach(item => {
+                    // item format: "Product Name - COLOR"
+                    const [productName, color] = item.split(' - ');
+                    products.push({
+                        product: productName,
+                        color: color,
+                        quantity: 1,
+                        price: 129
+                    });
+                });
+            } else {
+                // Direct order
+                const summaryDiv = document.querySelector('#orderSummary .summary-item');
+                if (summaryDiv) {
+                    // Try to extract product and color from summary
+                    const text = summaryDiv.innerText;
+                    // text format: "Product Name - COLOR\t129 DH x QUANTITY"
+                    const match = text.match(/^(.*?) - (.*?)\s+129 DH x (\d+)/);
+                    if (match) {
+                        products.push({
+                            product: match[1],
+                            color: match[2],
+                            quantity: parseInt(match[3]),
+                            price: 129
+                        });
+                    }
+                }
+            }
+            // Group products by name/color for cart (in case of multiple same items)
+            let grouped = {};
+            products.forEach(p => {
+                const key = p.product + '|' + p.color;
+                if (!grouped[key]) grouped[key] = { ...p };
+                else grouped[key].quantity += 1;
+            });
+            const productsArray = Object.values(grouped);
+            // Prepare order data
+            const orderData = {
+                date: new Date().toISOString(),
+                name,
+                city,
+                phone,
+                products: productsArray
+            };
+            // Send to JSONBin (append to array)
+            fetch('https://api.jsonbin.io/v3/b/68692cc78a456b7966bbcdf4/latest', {
+                method: 'GET',
+                headers: {
+                    'X-Master-Key': '$2a$10$W7Y1w05rI7FhqCSUCB/tRuDJYO2fRlTwgv2s3je3OlExS3oOz9UzG'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                let orders = Array.isArray(data.record) ? data.record : [];
+                orders.push(orderData);
+                return fetch('https://api.jsonbin.io/v3/b/68692cc78a456b7966bbcdf4', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': '$2a$10$W7Y1w05rI7FhqCSUCB/tRuDJYO2fRlTwgv2s3je3OlExS3oOz9UzG'
+                    },
+                    body: JSON.stringify(orders)
+                });
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Erreur lors de l\'envoi de la commande');
+                clearCart();
+                closeCheckout();
+                showThankYouPopup();
+            })
+            .catch(error => {
+                alert('Erreur lors de l\'envoi de la commande. Veuillez réessayer.');
+            });
+        }
+    </script>
+</body>
+</html>
+<!-- Thank You Popup -->
+<div class="popup-overlay" id="thankYouOverlay" style="display: none;">
+    <div class="popup" style="max-width: 400px;">
+        <h3 style="margin-bottom: 20px;">Merci pour votre commande !</h3>
+        <div style="font-size: 18px; margin-bottom: 20px;">Votre commande a été reçue.<br>Nous vous contacterons bientôt pour la livraison.<br><span style="font-size: 32px;">🎉</span></div>
+        <button class="popup-btn confirm-btn" style="width: 100%;" onclick="closeThankYouPopup()">Fermer</button>
+    </div>
+</div>
+<script>
+function showThankYouPopup() {
+    document.getElementById('thankYouOverlay').style.display = 'block';
+}
+function closeThankYouPopup() {
+    document.getElementById('thankYouOverlay').style.display = 'none';
+}
+</script>
