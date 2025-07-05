@@ -32,10 +32,6 @@
             top: 0;
             background: white;
             z-index: 3000;
-            width: 100vw;
-            left: 0;
-            right: 0;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
         
         .logo {
@@ -45,17 +41,14 @@
         }
         
         .cart {
-            position: fixed;
-            top: 28px;
-            right: 32px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
             background: white;
             border: 2px solid black;
             padding: 10px 15px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 4000;
-            border-radius: 10px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
         
 
@@ -72,24 +65,18 @@
 
         
         .cart-dropdown {
-            position: fixed;
-            top: 70px;
-            right: 32px;
-            left: auto;
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
             background: white;
             border: 2px solid black;
-            width: 370px;
-            min-width: 270px;
-            max-width: 95vw;
+            width: 350px;
             padding: 0;
             display: none;
             z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-            max-height: 70vh;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-height: 400px;
             overflow-y: auto;
-            border-radius: 14px;
-            font-size: 16px;
-        }
         }
         
         .cart-header {
@@ -263,19 +250,17 @@
                 padding: 7px;
             }
             .cart-dropdown {
-                position: fixed;
                 width: 98vw;
                 right: 1vw;
                 left: 1vw;
                 margin: 0 auto;
-                border-radius: 14px;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+                border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.18);
                 padding: 0 2vw 2vw 2vw;
                 font-size: 15px;
                 max-width: 99vw;
                 min-width: unset;
-                top: 60px;
-                z-index: 4001;
+                top: 55px;
             }
             .cart-header, .cart-total, .cart-actions {
                 padding-left: 2vw;
@@ -595,10 +580,26 @@
             pointer-events: auto;
         }
         .cart-dropdown {
-            transition: opacity 0.25s cubic-bezier(.4,0,.2,1), top 0.25s cubic-bezier(.4,0,.2,1);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 2px solid black;
+            width: 95vw;
+            max-width: 400px;
+            min-width: 250px;
+            padding: 0;
+            display: none;
+            z-index: 3001;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 14px;
+            transition: opacity 0.25s cubic-bezier(.4,0,.2,1), transform 0.25s cubic-bezier(.4,0,.2,1);
         }
         .cart-dropdown.show {
-            top: calc(100% + 10px);
+            top: 50%;
         }
         .popup-overlay {
             transition: background 0.25s cubic-bezier(.4,0,.2,1);
@@ -621,7 +622,17 @@
             </div>
         </div>
     </header>
-    
+    <div class="popup-overlay" id="cartOverlay" style="display: none; z-index: 3000;">
+        <div class="cart-dropdown" id="cartDropdown">
+            <div class="cart-header">Mon Panier</div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-total" id="cartTotal">Total: 0 DH</div>
+            <div class="cart-actions">
+                <button class="cart-btn" onclick="checkout()">COMMANDER</button>
+                <button class="cart-btn clear-btn" onclick="clearCart()">VIDER</button>
+            </div>
+        </div>
+    </div>
     <main class="products-section">
         <div class="products-grid">
             <div class="product-card">
@@ -849,13 +860,14 @@
         }
         
         function toggleCart() {
+            const overlay = document.getElementById('cartOverlay');
             const dropdown = document.getElementById('cartDropdown');
             const cartItems = document.getElementById('cartItems');
             const cartTotal = document.getElementById('cartTotal');
             if (dropdown.classList.contains('show')) {
                 dropdown.classList.remove('show');
                 setTimeout(() => {
-                    dropdown.style.display = 'none';
+                    overlay.style.display = 'none';
                 }, 250);
             } else {
                 if (cart.length === 0) {
@@ -872,12 +884,20 @@
                     ).join('');
                 }
                 cartTotal.textContent = `Total: ${cart.length * 129} DH`;
-                dropdown.style.display = 'block';
+                overlay.style.display = 'block';
                 setTimeout(() => {
                     dropdown.classList.add('show');
                 }, 10);
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+    // Close cart popup when clicking outside
+    document.getElementById('cartOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            toggleCart();
+        }
+    });
+});
         
         function removeFromCart(index) {
             cart.splice(index, 1);
