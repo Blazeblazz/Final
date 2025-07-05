@@ -10,6 +10,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100vw;
+            min-height: 100vh;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
         
         body {
             font-family: 'Poppins', 'Helvetica', sans-serif;
@@ -243,11 +251,57 @@
             }
             .cart-dropdown {
                 width: 98vw;
-                right: 0;
-                left: 0;
+                right: 1vw;
+                left: 1vw;
                 margin: 0 auto;
+                border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+                padding: 0 2vw 2vw 2vw;
+                font-size: 15px;
+                max-width: 99vw;
+                min-width: unset;
+                top: 55px;
             }
-        }
+            .cart-header, .cart-total, .cart-actions {
+                padding-left: 2vw;
+                padding-right: 2vw;
+            }
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .item-info {
+                width: 100%;
+            }
+            .remove-btn {
+                align-self: flex-end;
+                margin-top: 2px;
+            }
+            .cart-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .cart-btn, .clear-btn {
+                width: 100%;
+                font-size: 15px;
+                padding: 12px 0;
+            }
+            .products-section {
+                padding: 10px 2vw;
+                width: 100vw;
+                box-sizing: border-box;
+            }
+            .products-grid {
+                width: 100vw;
+                margin-left: -2vw;
+                margin-right: -2vw;
+                box-sizing: border-box;
+            }
+            body {
+                width: 100vw;
+                overflow-x: hidden;
+            }
         }
         
         .product-card {
@@ -260,7 +314,7 @@
         .product-image {
             width: 100%;
             aspect-ratio: 1 / 1;
-            border: 1px solid black;
+            border: 2px solid black;
             margin-bottom: 15px;
             object-fit: contain;
         }
@@ -512,6 +566,28 @@
             margin-top: 10px;
             font-weight: bold;
         }
+        
+        /* Popup and Cart Animations */
+        .popup, .checkout-popup, .cart-dropdown {
+            opacity: 0;
+            transform: scale(0.96) translate(-50%, -48%);
+            transition: opacity 0.25s cubic-bezier(.4,0,.2,1), transform 0.25s cubic-bezier(.4,0,.2,1);
+            pointer-events: none;
+        }
+        .popup.show, .checkout-popup.show, .cart-dropdown.show {
+            opacity: 1;
+            transform: scale(1) translate(-50%, -50%);
+            pointer-events: auto;
+        }
+        .cart-dropdown {
+            transition: opacity 0.25s cubic-bezier(.4,0,.2,1), top 0.25s cubic-bezier(.4,0,.2,1);
+        }
+        .cart-dropdown.show {
+            top: calc(100% + 10px);
+        }
+        .popup-overlay {
+            transition: background 0.25s cubic-bezier(.4,0,.2,1);
+        }
     </style>
 </head>
 <body>
@@ -693,7 +769,6 @@
                 'Trust-The-Process': 'images/products/Trust-The-Process.webp',
                 'Wild-Flowers': 'images/products/Wild-Flowers.webp'
             };
-            
             const colorMap = {
                 'Lost in Casablanca': ['BLANC', 'BEIGE'],
                 'Rise': ['BLANC', 'BEIGE'],
@@ -702,22 +777,28 @@
                 'Trust-The-Process': ['NOIR', 'BLANC'],
                 'Wild-Flowers': ['NOIR', 'BLANC']
             };
-            
             document.getElementById('popupImage').src = imageMap[productName];
             document.getElementById('popupTitle').textContent = `${productName} - Choisir les options`;
-            
             const colorOptions = document.querySelector('.color-options');
             colorOptions.innerHTML = colorMap[productName].map(color => 
                 `<button class="color-btn" onclick="selectColor('${color}')">${color}</button>`
             ).join('');
-            
-            document.getElementById('popupOverlay').style.display = 'block';
+            const overlay = document.getElementById('popupOverlay');
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                overlay.querySelector('.popup').classList.add('show');
+            }, 10);
             selectedColor = '';
             document.getElementById('quantityInput').value = 1;
         }
         
         function closePopup() {
-            document.getElementById('popupOverlay').style.display = 'none';
+            const overlay = document.getElementById('popupOverlay');
+            const popup = overlay.querySelector('.popup');
+            popup.classList.remove('show');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 250);
         }
         
         function selectColor(color) {
@@ -756,9 +837,11 @@
             const dropdown = document.getElementById('cartDropdown');
             const cartItems = document.getElementById('cartItems');
             const cartTotal = document.getElementById('cartTotal');
-            
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                setTimeout(() => {
+                    dropdown.style.display = 'none';
+                }, 250);
             } else {
                 if (cart.length === 0) {
                     cartItems.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
@@ -775,6 +858,9 @@
                 }
                 cartTotal.textContent = `Total: ${cart.length * 129} DH`;
                 dropdown.style.display = 'block';
+                setTimeout(() => {
+                    dropdown.classList.add('show');
+                }, 10);
             }
         }
         
@@ -803,7 +889,6 @@
         function showCheckoutForm() {
             const orderSummary = document.getElementById('orderSummary');
             const subtotal = cart.length * 129;
-            
             orderSummary.innerHTML = `
                 <h4>Résumé de la commande:</h4>
                 ${cart.map(item => `<div class="summary-item"><span>${item}</span><span>129 DH</span></div>`).join('')}
@@ -811,18 +896,25 @@
                 <div class="summary-item"><span>Livraison:</span><span style="color: green;">GRATUITE</span></div>
                 <div class="summary-item summary-total"><span>Total:</span><span>${subtotal} DH</span></div>
             `;
-            
-            document.getElementById('checkoutOverlay').style.display = 'block';
+            const overlay = document.getElementById('checkoutOverlay');
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                overlay.querySelector('.checkout-popup').classList.add('show');
+            }, 10);
         }
         
         function closeCheckout() {
-            document.getElementById('checkoutOverlay').style.display = 'none';
+            const overlay = document.getElementById('checkoutOverlay');
+            const popup = overlay.querySelector('.checkout-popup');
+            popup.classList.remove('show');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 250);
         }
         
         function showDirectCheckout(product, color, quantity) {
             const orderSummary = document.getElementById('orderSummary');
             const total = quantity * 129;
-            
             orderSummary.innerHTML = `
                 <h4>Résumé de la commande:</h4>
                 <div class="summary-item"><span>${product} - ${color}</span><span>129 DH x ${quantity}</span></div>
@@ -830,8 +922,11 @@
                 <div class="summary-item"><span>Livraison:</span><span style="color: green;">GRATUITE</span></div>
                 <div class="summary-item summary-total"><span>Total:</span><span>${total} DH</span></div>
             `;
-            
-            document.getElementById('checkoutOverlay').style.display = 'block';
+            const overlay = document.getElementById('checkoutOverlay');
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                overlay.querySelector('.checkout-popup').classList.add('show');
+            }, 10);
         }
         
         function submitOrder() {
@@ -899,43 +994,31 @@
             })
             .then(res => res.json())
             .then(data => {
-                let orders = Array.isArray(data.record) ? data.record : [];
-                orders.push(orderData);
-                return fetch('https://api.jsonbin.io/v3/b/68692cc78a456b7966bbcdf4', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-Key': '$2a$10$W7Y1w05rI7FhqCSUCB/tRuDJYO2fRlTwgv2s3je3OlExS3oOz9UzG'
-                    },
-                    body: JSON.stringify(orders)
-                });
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Erreur lors de l\'envoi de la commande');
-                clearCart();
-                closeCheckout();
-                showThankYouPopup();
-            })
-            .catch(error => {
-                alert('Erreur lors de l\'envoi de la commande. Veuillez réessayer.');
-            });
-        }
-    </script>
-</body>
-</html>
-<!-- Thank You Popup -->
-<div class="popup-overlay" id="thankYouOverlay" style="display: none;">
-    <div class="popup" style="max-width: 400px;">
-        <h3 style="margin-bottom: 20px;">Merci pour votre commande !</h3>
-        <div style="font-size: 18px; margin-bottom: 20px;">Votre commande a été reçue.<br>Nous vous contacterons bientôt pour la livraison.<br><span style="font-size: 32px;">🎉</span></div>
-        <button class="popup-btn confirm-btn" style="width: 100%;" onclick="closeThankYouPopup()">Fermer</button>
-    </div>
-</div>
-<script>
-function showThankYouPopup() {
-    document.getElementById('thankYouOverlay').style.display = 'block';
-}
-function closeThankYouPopup() {
-    document.getElementById('thankYouOverlay').style.display = 'none';
-}
-</script>
+                                let orders = Array.isArray(data.record) ? data.record : [];
+                                orders.push(orderData);
+                                // Save updated orders array
+                                fetch('https://api.jsonbin.io/v3/b/68692cc78a456b7966bbcdf4', {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-Master-Key': '$2a$10$W7Y1w05rI7FhqCSUCB/tRuDJYO2fRlTwgv2s3je3OlExS3oOz9UzG'
+                                    },
+                                    body: JSON.stringify(orders)
+                                })
+                                .then(() => {
+                                    alert('Commande envoyée avec succès! Nous vous contacterons bientôt.');
+                                    cart = [];
+                                    document.getElementById('cartCount').textContent = '0';
+                                    closeCheckout();
+                                })
+                                .catch(() => {
+                                    alert('Erreur lors de l\'envoi de la commande. Veuillez réessayer.');
+                                });
+                            })
+                            .catch(() => {
+                                alert('Erreur lors de la connexion au serveur. Veuillez réessayer.');
+                            });
+                        }
+                    </script>
+                </body>
+                </html>
