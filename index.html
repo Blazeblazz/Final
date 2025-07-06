@@ -528,7 +528,7 @@
                 </div>
                 <div class="free-delivery">LIVRAISON GRATUITE</div>
                 <div class="payment-info">Paiement à la livraison uniquement</div>
-                <button class="buy-button" onclick="directOrder('Lost in Casablanca')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+                <button class="buy-button" data-product="Lost in Casablanca" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Rise, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
@@ -540,7 +540,7 @@
                 </div>
                 <div class="free-delivery">LIVRAISON GRATUITE</div>
                 <div class="payment-info">Paiement à la livraison uniquement</div>
-                <button class="buy-button" onclick="directOrder('Rise')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+                <button class="buy-button" data-product="Rise" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Rush, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
@@ -552,7 +552,7 @@
                 </div>
                 <div class="free-delivery">LIVRAISON GRATUITE</div>
                 <div class="payment-info">Paiement à la livraison uniquement</div>
-                <button class="buy-button" onclick="directOrder('Rush')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+                <button class="buy-button" data-product="Rush" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Segreto, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
@@ -564,7 +564,7 @@
                 </div>
                 <div class="free-delivery">LIVRAISON GRATUITE</div>
                 <div class="payment-info">Paiement à la livraison uniquement</div>
-                <button class="buy-button" onclick="directOrder('SEGRETO')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+                <button class="buy-button" data-product="SEGRETO" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Trust The Process, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
@@ -576,7 +576,7 @@
                 </div>
                 <div class="free-delivery">LIVRAISON GRATUITE</div>
                 <div class="payment-info">Paiement à la livraison uniquement</div>
-                <button class="buy-button" onclick="directOrder('Trust-The-Process')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+                <button class="buy-button" data-product="Trust-The-Process" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Wild Flowers, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
@@ -588,7 +588,7 @@
                 </div>
                 <div class="free-delivery">LIVRAISON GRATUITE</div>
                 <div class="payment-info">Paiement à la livraison uniquement</div>
-                <button class="buy-button" onclick="directOrder('Wild-Flowers')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
+                <button class="buy-button" data-product="Wild-Flowers" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
         </div>
     </main>
@@ -741,6 +741,26 @@
     </div>
     
     <script>
+        // Add width/height to product images and popup image, and convert inline event handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set width/height for product images
+            document.querySelectorAll('.product-image').forEach(function(img) {
+                img.setAttribute('width', '600');
+                img.setAttribute('height', '600');
+            });
+            // Set width/height for popup image
+            var popupImg = document.getElementById('popupImage');
+            if (popupImg) {
+                popupImg.setAttribute('width', '250');
+                popupImg.setAttribute('height', '250');
+            }
+            // Convert inline event handlers for buy buttons
+            document.querySelectorAll('.buy-button[data-product]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    directOrder(btn.getAttribute('data-product'));
+                });
+            });
+        });
         let currentProduct = '';
         let currentAction = '';
         let selectedColor = '';
