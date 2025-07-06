@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLAZE - T-Shirts</title>
     <meta name="description" content="T-shirts premium BLAZE. Livraison gratuite partout au Maroc. Paiement à la livraison. Stock limité !">
@@ -183,7 +184,7 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            background: #e53935;
+            background: #b80000; /* darker red for better contrast */
             color: #fff;
             font-size: 13px;
             font-weight: bold;
@@ -222,19 +223,19 @@
         .compare-price {
             font-size: 16px;
             text-decoration: line-through;
-            color: #666;
+            color: #4d4d4d; /* darker gray for better contrast */
             margin-left: 10px;
         }
         
         .free-delivery {
-            color: green;
+            color: #006400; /* dark green for better contrast */
             font-weight: bold;
             margin-bottom: 15px;
         }
         
         .payment-info {
             font-size: 14px;
-            color: #666;
+            color: #4d4d4d; /* darker gray for better contrast */
             margin-bottom: 15px;
         }
         
@@ -356,7 +357,7 @@
         .size-info {
             text-align: center;
             font-size: 14px;
-            color: #666;
+            color: #4d4d4d; /* darker gray for better contrast */
             margin-top: 10px;
         }
         
@@ -519,8 +520,8 @@
         <div class="products-grid">
             <div class="product-card" tabindex="0" aria-label="Lost in Casablanca, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
-                <img src="images/products/Lost in Casablanca.webp" alt="T-shirt Lost in Casablanca, visuel du produit" class="product-image" loading="lazy">
-                <h3 class="product-title">Lost in Casablanca</h3>
+                <img src="images/products/Lost in Casablanca.webp" alt="T-shirt Lost in Casablanca, visuel du produit" class="product-image" fetchpriority="high">
+                <h2 class="product-title">Lost in Casablanca</h2>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
                     <span class="compare-price">179 DH</span>
@@ -529,11 +530,10 @@
                 <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" onclick="directOrder('Lost in Casablanca')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
-            
             <div class="product-card" tabindex="0" aria-label="Rise, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
                 <img src="images/products/Rise.webp" alt="T-shirt Rise, visuel du produit" class="product-image" loading="lazy">
-                <h3 class="product-title">Rise</h3>
+                <h2 class="product-title">Rise</h2>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
                     <span class="compare-price">179 DH</span>
@@ -542,11 +542,10 @@
                 <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" onclick="directOrder('Rise')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
-            
             <div class="product-card" tabindex="0" aria-label="Rush, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
                 <img src="images/products/Rush.webp" alt="T-shirt Rush, visuel du produit" class="product-image" loading="lazy">
-                <h3 class="product-title">Rush</h3>
+                <h2 class="product-title">Rush</h2>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
                     <span class="compare-price">179 DH</span>
@@ -555,11 +554,10 @@
                 <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" onclick="directOrder('Rush')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
-            
             <div class="product-card" tabindex="0" aria-label="Segreto, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
                 <img src="images/products/SEGRETO.webp" alt="T-shirt Segreto, visuel du produit" class="product-image" loading="lazy">
-                <h3 class="product-title">Segreto</h3>
+                <h2 class="product-title">Segreto</h2>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
                     <span class="compare-price">179 DH</span>
@@ -568,11 +566,10 @@
                 <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" onclick="directOrder('SEGRETO')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
-            
             <div class="product-card" tabindex="0" aria-label="Trust The Process, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
                 <img src="images/products/Trust-The-Process.webp" alt="T-shirt Trust The Process, visuel du produit" class="product-image" loading="lazy">
-                <h3 class="product-title">Trust The Process</h3>
+                <h2 class="product-title">Trust The Process</h2>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
                     <span class="compare-price">179 DH</span>
@@ -581,11 +578,10 @@
                 <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" onclick="directOrder('Trust-The-Process')" style="margin-top: 10px; background: #27ae60;">COMMANDER MAINTENANT</button>
             </div>
-            
             <div class="product-card" tabindex="0" aria-label="Wild Flowers, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
                 <img src="images/products/Wild-Flowers.webp" alt="T-shirt Wild Flowers, visuel du produit" class="product-image" loading="lazy">
-                <h3 class="product-title">Wild Flowers</h3>
+                <h2 class="product-title">Wild Flowers</h2>
                 <div class="price-section">
                     <span class="current-price">129 DH</span>
                     <span class="compare-price">179 DH</span>
@@ -600,6 +596,93 @@
     <footer class="footer" role="contentinfo">
         <p>&copy; 2025 BLAZE. Tous droits réservés.</p>
     </footer>
+    <!-- Structured Data for Products -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "Product",
+          "name": "Lost in Casablanca",
+          "image": "images/products/Lost in Casablanca.webp",
+          "description": "T-shirt premium BLAZE - Lost in Casablanca.",
+          "brand": { "@type": "Brand", "name": "BLAZE" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "MAD",
+            "price": "129",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Rise",
+          "image": "images/products/Rise.webp",
+          "description": "T-shirt premium BLAZE - Rise.",
+          "brand": { "@type": "Brand", "name": "BLAZE" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "MAD",
+            "price": "129",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Rush",
+          "image": "images/products/Rush.webp",
+          "description": "T-shirt premium BLAZE - Rush.",
+          "brand": { "@type": "Brand", "name": "BLAZE" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "MAD",
+            "price": "129",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Segreto",
+          "image": "images/products/SEGRETO.webp",
+          "description": "T-shirt premium BLAZE - Segreto.",
+          "brand": { "@type": "Brand", "name": "BLAZE" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "MAD",
+            "price": "129",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Trust The Process",
+          "image": "images/products/Trust-The-Process.webp",
+          "description": "T-shirt premium BLAZE - Trust The Process.",
+          "brand": { "@type": "Brand", "name": "BLAZE" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "MAD",
+            "price": "129",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Wild Flowers",
+          "image": "images/products/Wild-Flowers.webp",
+          "description": "T-shirt premium BLAZE - Wild Flowers.",
+          "brand": { "@type": "Brand", "name": "BLAZE" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "MAD",
+            "price": "129",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
+    }
+    </script>
     
     <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle" style="display:none;">
         <div class="popup">
