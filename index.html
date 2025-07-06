@@ -873,23 +873,12 @@
         }
         
         function checkout() {
-            if (cart.length === 0) {
-                alert('Votre panier est vide');
-            } else {
-                showCheckoutForm();
-            }
+            showCheckoutForm();
         }
         
         function showCheckoutForm() {
             const orderSummary = document.getElementById('orderSummary');
-            const subtotal = cart.length * 129;
-            orderSummary.innerHTML = `
-                <h4>Résumé de la commande:</h4>
-                ${cart.map(item => `<div class="summary-item"><span>${item}</span><span>129 DH</span></div>`).join('')}
-                <div class="summary-item"><span>Sous-total:</span><span>${subtotal} DH</span></div>
-                <div class="summary-item"><span>Livraison:</span><span style="color: green;">GRATUITE</span></div>
-                <div class="summary-item summary-total"><span>Total:</span><span>${subtotal} DH</span></div>
-            `;
+            orderSummary.innerHTML = `<h4>Résumé de la commande:</h4><div class='summary-item'>Aucun article dans le panier.</div>`;
             const overlay = document.getElementById('checkoutOverlay');
             overlay.style.display = 'block';
             setTimeout(() => {
