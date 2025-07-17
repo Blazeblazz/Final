@@ -165,6 +165,7 @@
                 margin-left: -2vw;
                 margin-right: -2vw;
                 box-sizing: border-box;
+                grid-template-columns: repeat(2, 1fr); /* CHANGED: 2 per row for mobile */
             }
             body {
                 width: 100vw;
@@ -178,6 +179,27 @@
             text-align: center;
             background-color: white;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .card-content {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .product-title,
+        .price-section,
+        .free-delivery {
+            margin-bottom: 12px;
+        }
+        .free-delivery {
+            margin-bottom: 18px;
+        }
+        .buy-button {
+            margin-top: auto;
         }
         
         .urgency-badge {
@@ -198,11 +220,23 @@
         
         .product-image {
             width: 100%;
-            height: 320px;
-            border: 2px solid black;
-            margin-bottom: 15px;
+            height: 100%;
+            border: 1.5px solid black;
+            margin-bottom: 0;
             object-fit: contain;
             aspect-ratio: unset;
+            display: block;
+        }
+        .product-image-container {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #fff;
+            border: 1.5px solid black;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
         
         .product-title {
@@ -519,78 +553,142 @@
     <div id="toast" style="position:fixed;left:50%;bottom:40px;transform:translateX(-50%);background:#222;color:#fff;padding:14px 28px;border-radius:24px;font-size:16px;z-index:9999;display:none;box-shadow:0 4px 24px rgba(0,0,0,0.18);transition:opacity 0.3s;opacity:0;pointer-events:none;max-width:90vw;text-align:center;"></div>
     <div id="spinner" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9998;background:rgba(255,255,255,0.6);align-items:center;justify-content:center;"><div style="border:6px solid #eee;border-top:6px solid #27ae60;border-radius:50%;width:48px;height:48px;animation:spin 1s linear infinite;"></div></div>
     <style>@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}</style>
+    <section class="products-section">
+        <h2 style="font-size:2rem;font-weight:700;margin-bottom:24px;text-align:center;">NOUVEAUTÉS</h2>
+        <div class="products-grid">
+            <div class="product-card" tabindex="0" aria-label="World Journey, nouveau produit">
+                <span class="urgency-badge" aria-live="polite">NOUVEAU</span>
+                <div class="product-image-container"><img src="images/New Arrival/WORLD.webp" alt="World Journey, nouveau produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">World Journey</h2>
+                  <div class="price-section">
+                      <span class="current-price">149 DH</span>
+                      <span class="compare-price">199 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
+                </div>
+                <button class="buy-button" data-product="World Journey" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
+            </div>
+            <div class="product-card" tabindex="0" aria-label="Lost tale, nouveau produit">
+                <span class="urgency-badge" aria-live="polite">NOUVEAU</span>
+                <div class="product-image-container"><img src="images/New Arrival/vow.webp" alt="Lost tale, nouveau produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">Lost tale</h2>
+                  <div class="price-section">
+                      <span class="current-price">149 DH</span>
+                      <span class="compare-price">199 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
+                </div>
+                <button class="buy-button" data-product="Lost tale" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
+            </div>
+            <div class="product-card" tabindex="0" aria-label="HULM, nouveau produit">
+                <span class="urgency-badge" aria-live="polite">NOUVEAU</span>
+                <div class="product-image-container"><img src="images/New Arrival/HULM.webp" alt="HULM, nouveau produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">HULM</h2>
+                  <div class="price-section">
+                      <span class="current-price">149 DH</span>
+                      <span class="compare-price">199 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
+                </div>
+                <button class="buy-button" data-product="HULM" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
+            </div>
+            <div class="product-card" tabindex="0" aria-label="Coastal Club, nouveau produit">
+                <span class="urgency-badge" aria-live="polite">NOUVEAU</span>
+                <div class="product-image-container"><img src="images/New Arrival/COASTAL.webp" alt="Coastal Club, nouveau produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">Coastal Club</h2>
+                  <div class="price-section">
+                      <span class="current-price">149 DH</span>
+                      <span class="compare-price">199 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
+                </div>
+                <button class="buy-button" data-product="Coastal Club" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
+            </div>
+        </div>
+    </section>
     <main class="products-section">
+        <h2 style="font-size:2rem;font-weight:700;margin-bottom:24px;text-align:center;">STOCK LIMITÉ</h2>
         <div class="products-grid">
             <div class="product-card" tabindex="0" aria-label="Lost in Casablanca, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
-                <img src="images/products/Lost in Casablanca.webp" alt="T-shirt Lost in Casablanca, visuel du produit" class="product-image" fetchpriority="high">
-                <h2 class="product-title">Lost in Casablanca</h2>
-                <div class="price-section">
-                    <span class="current-price">129 DH</span>
-                    <span class="compare-price">179 DH</span>
+                <div class="product-image-container"><img src="images/products/Lost in Casablanca.webp" alt="T-shirt Lost in Casablanca, visuel du produit" class="product-image" fetchpriority="high"></div>
+                <div class="card-content">
+                  <h2 class="product-title">Lost in Casablanca</h2>
+                  <div class="price-section">
+                      <span class="current-price">129 DH</span>
+                      <span class="compare-price">179 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
                 </div>
-                <div class="free-delivery">LIVRAISON GRATUITE</div>
-                <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" data-product="Lost in Casablanca" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Rise, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
-                <img src="images/products/Rise.webp" alt="T-shirt Rise, visuel du produit" class="product-image" loading="lazy">
-                <h2 class="product-title">Rise</h2>
-                <div class="price-section">
-                    <span class="current-price">129 DH</span>
-                    <span class="compare-price">179 DH</span>
+                <div class="product-image-container"><img src="images/products/Rise.webp" alt="T-shirt Rise, visuel du produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">Rise</h2>
+                  <div class="price-section">
+                      <span class="current-price">129 DH</span>
+                      <span class="compare-price">179 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
                 </div>
-                <div class="free-delivery">LIVRAISON GRATUITE</div>
-                <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" data-product="Rise" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Rush, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
-                <img src="images/products/Rush.webp" alt="T-shirt Rush, visuel du produit" class="product-image" loading="lazy">
-                <h2 class="product-title">Rush</h2>
-                <div class="price-section">
-                    <span class="current-price">129 DH</span>
-                    <span class="compare-price">179 DH</span>
+                <div class="product-image-container"><img src="images/products/Rush.webp" alt="T-shirt Rush, visuel du produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">Rush</h2>
+                  <div class="price-section">
+                      <span class="current-price">129 DH</span>
+                      <span class="compare-price">179 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
                 </div>
-                <div class="free-delivery">LIVRAISON GRATUITE</div>
-                <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" data-product="Rush" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Segreto, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
-                <img src="images/products/SEGRETO.webp" alt="T-shirt Segreto, visuel du produit" class="product-image" loading="lazy">
-                <h2 class="product-title">Segreto</h2>
-                <div class="price-section">
-                    <span class="current-price">129 DH</span>
-                    <span class="compare-price">179 DH</span>
+                <div class="product-image-container"><img src="images/products/SEGRETO.webp" alt="T-shirt Segreto, visuel du produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">Segreto</h2>
+                  <div class="price-section">
+                      <span class="current-price">129 DH</span>
+                      <span class="compare-price">179 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
                 </div>
-                <div class="free-delivery">LIVRAISON GRATUITE</div>
-                <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" data-product="SEGRETO" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Trust The Process, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
-                <img src="images/products/Trust-The-Process.webp" alt="T-shirt Trust The Process, visuel du produit" class="product-image" loading="lazy">
-                <h2 class="product-title">Trust The Process</h2>
-                <div class="price-section">
-                    <span class="current-price">129 DH</span>
-                    <span class="compare-price">179 DH</span>
+                <div class="product-image-container"><img src="images/products/Trust-The-Process.webp" alt="T-shirt Trust The Process, visuel du produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">Trust The Process</h2>
+                  <div class="price-section">
+                      <span class="current-price">129 DH</span>
+                      <span class="compare-price">179 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
                 </div>
-                <div class="free-delivery">LIVRAISON GRATUITE</div>
-                <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" data-product="Trust-The-Process" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
             <div class="product-card" tabindex="0" aria-label="Wild Flowers, T-shirt premium, 129 DH, livraison gratuite, stock limité">
                 <span class="urgency-badge" aria-live="polite">STOCK LIMITÉ</span>
-                <img src="images/products/Wild-Flowers.webp" alt="T-shirt Wild Flowers, visuel du produit" class="product-image" loading="lazy">
-                <h2 class="product-title">Wild Flowers</h2>
-                <div class="price-section">
-                    <span class="current-price">129 DH</span>
-                    <span class="compare-price">179 DH</span>
+                <div class="product-image-container"><img src="images/products/Wild-Flowers.webp" alt="T-shirt Wild Flowers, visuel du produit" class="product-image" loading="lazy"></div>
+                <div class="card-content">
+                  <h2 class="product-title">Wild Flowers</h2>
+                  <div class="price-section">
+                      <span class="current-price">129 DH</span>
+                      <span class="compare-price">179 DH</span>
+                  </div>
+                  <div class="free-delivery">LIVRAISON GRATUITE</div>
                 </div>
-                <div class="free-delivery">LIVRAISON GRATUITE</div>
-                <div class="payment-info">Paiement à la livraison uniquement</div>
                 <button class="buy-button" data-product="Wild-Flowers" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
             </div>
         </div>
@@ -802,7 +900,11 @@
                 'Rush': 'images/products/Rush.webp',
                 'SEGRETO': 'images/products/SEGRETO.webp',
                 'Trust-The-Process': 'images/products/Trust-The-Process.webp',
-                'Wild-Flowers': 'images/products/Wild-Flowers.webp'
+                'Wild-Flowers': 'images/products/Wild-Flowers.webp',
+                'World Journey': 'images/New Arrival/WORLD.webp',
+                'Lost tale': 'images/New Arrival/vow.webp',
+                'HULM': 'images/New Arrival/HULM.webp',
+                'Coastal Club': 'images/New Arrival/COASTAL.webp'
             };
             const colorMap = {
                 'Lost in Casablanca': ['BLANC', 'BEIGE'],
@@ -810,24 +912,37 @@
                 'Rush': ['BEIGE', 'BLANC', 'NOIR'],
                 'SEGRETO': ['BLANC', 'BEIGE', 'NOIR'],
                 'Trust-The-Process': ['NOIR', 'BLANC'],
-                'Wild-Flowers': ['NOIR', 'BLANC']
+                'Wild-Flowers': ['NOIR', 'BLANC'],
+                'World Journey': ['BEIGE', 'NOIR'],
+                'Lost tale': ['BLANC'],
+                'HULM': ['BEIGE'],
+                'Coastal Club': ['BLANC']
             };
             document.getElementById('popupImage').src = imageMap[productName];
             document.getElementById('popupTitle').textContent = `${productName} - Choisir les options`;
             const colorOptions = document.querySelector('.color-options');
-            colorOptions.innerHTML = colorMap[productName].map(color => 
-                `<button class="color-btn" onclick="selectColor('${color}')" aria-label="Choisir la couleur ${color}" aria-checked="false" role="radio">${color}</button>`
-            ).join('');
+            const optionsRow = document.querySelector('.options-row');
+            // Hide or show color selection based on number of colors
+            if (colorMap[productName].length > 1) {
+                colorOptions.innerHTML = colorMap[productName].map(color => 
+                    `<button class="color-btn" onclick="selectColor('${color}')" aria-label="Choisir la couleur ${color}" aria-checked="false" role="radio">${color}</button>`
+                ).join('');
+                colorOptions.parentElement.style.display = '';
+                selectedColor = '';
+            } else {
+                colorOptions.innerHTML = '';
+                colorOptions.parentElement.style.display = 'none';
+                selectedColor = colorMap[productName][0];
+            }
             const overlay = document.getElementById('popupOverlay');
             overlay.style.display = 'block';
             setTimeout(() => {
                 overlay.querySelector('.popup').classList.add('show');
-                // Focus first color button
+                // Focus first color button if present
                 const firstColorBtn = colorOptions.querySelector('.color-btn');
                 if (firstColorBtn) firstColorBtn.focus();
                 trapFocus(overlay.querySelector('.popup'));
             }, 10);
-            selectedColor = '';
             document.getElementById('quantityInput').value = 1;
         }
         
@@ -907,10 +1022,12 @@
                 });
             }
             const orderSummary = document.getElementById('orderSummary');
-            const total = quantity * 129;
+            let unitPrice = 129;
+            if (["World Journey","Lost tale","HULM","Coastal Club"].includes(product)) unitPrice = 149;
+            const total = quantity * unitPrice;
             orderSummary.innerHTML = `
                 <h4>Résumé de la commande:</h4>
-                <div class="summary-item"><span>${escapeHTML(product)} - ${escapeHTML(color)}</span><span>129 DH x ${quantity}</span></div>
+                <div class="summary-item"><span>${escapeHTML(product)} - ${escapeHTML(color)}</span><span>${unitPrice} DH x ${quantity}</span></div>
                 <div class="summary-item"><span>Sous-total:</span><span>${total} DH</span></div>
                 <div class="summary-item"><span>Livraison:</span><span style="color: green;">GRATUITE</span></div>
                 <div class="summary-item summary-total"><span>Total:</span><span>${total} DH</span></div>
