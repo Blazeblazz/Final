@@ -173,12 +173,6 @@
             }
         }
         
-        @media (min-width: 1024px) {
-            .products-section:first-of-type .products-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        
         .product-card {
             border: 2px solid black;
             padding: 20px;
@@ -531,6 +525,9 @@
         .popup-overlay {
             transition: background 0.25s cubic-bezier(.4,0,.2,1);
         }
+        .featured-grid {
+            grid-template-columns: 1fr !important;
+        }
     </style>
     <!-- Meta Pixel Code -->
     <script defer>
@@ -552,67 +549,28 @@
 </head>
 <body>
     <header class="header" role="banner">
-        <div class="logo" tabindex="0" aria-label="BLAZE, retour à l'accueil">
-            <img src="logo.svg" alt="BLAZE logo" style="height:48px;vertical-align:middle;"> BLAZE
+        <div class="logo" tabindex="0" aria-label="BLAZE, retour à l'accueil" style="display:flex;justify-content:center;align-items:center;">
+            <img src="images/Logo/Logo.png" alt="BLAZE logo" style="height:48px;vertical-align:middle;">
         </div>
     </header>
     <div id="toast" style="position:fixed;left:50%;bottom:40px;transform:translateX(-50%);background:#222;color:#fff;padding:14px 28px;border-radius:24px;font-size:16px;z-index:9999;display:none;box-shadow:0 4px 24px rgba(0,0,0,0.18);transition:opacity 0.3s;opacity:0;pointer-events:none;max-width:90vw;text-align:center;"></div>
     <div id="spinner" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9998;background:rgba(255,255,255,0.6);align-items:center;justify-content:center;"><div style="border:6px solid #eee;border-top:6px solid #27ae60;border-radius:50%;width:48px;height:48px;animation:spin 1s linear infinite;"></div></div>
     <style>@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}</style>
     <section class="products-section">
-        <h2 style="font-size:2rem;font-weight:700;margin-bottom:24px;text-align:center;">NOUVEAUTÉS</h2>
-        <div class="products-grid">
-            <div class="product-card" tabindex="0" aria-label="World Journey, nouveau produit">
-                <span class="urgency-badge" aria-live="polite">NOUVEAU</span>
-                <div class="product-image-container"><img src="images/New Arrival/WORLD.webp" alt="World Journey, nouveau produit" class="product-image" loading="lazy"></div>
-                <div class="card-content">
-                  <h2 class="product-title">World Journey</h2>
-                  <div class="price-section">
-                      <span class="current-price">149 DH</span>
-                      <span class="compare-price">199 DH</span>
-                  </div>
-                  <div class="free-delivery">LIVRAISON GRATUITE</div>
-                </div>
-                <button class="buy-button" data-product="World Journey" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
-            </div>
-            <div class="product-card" tabindex="0" aria-label="Lost tale, nouveau produit">
-                <span class="urgency-badge" aria-live="polite">NOUVEAU</span>
-                <div class="product-image-container"><img src="images/New Arrival/vow.webp" alt="Lost tale, nouveau produit" class="product-image" loading="lazy"></div>
+        <h2 style="font-size:2rem;font-weight:700;margin-bottom:24px;text-align:center;">PRODUIT VEDETTE</h2>
+        <div class="products-grid featured-grid">
+            <div class="product-card" tabindex="0" aria-label="Lost tale, produit vedette">
+                <span class="urgency-badge" aria-live="polite" style="background:#e6c200;left:unset;right:12px;">VEDETTE</span>
+                <div class="product-image-container"><img src="images/New Arrival/vow.webp" alt="Lost tale, produit vedette" class="product-image" loading="eager"></div>
                 <div class="card-content">
                   <h2 class="product-title">Lost tale</h2>
                   <div class="price-section">
                       <span class="current-price">149 DH</span>
-                      <span class="compare-price">199 DH</span>
+                      <span class="compare-price">179 DH</span>
                   </div>
                   <div class="free-delivery">LIVRAISON GRATUITE</div>
                 </div>
-                <button class="buy-button" data-product="Lost tale" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
-            </div>
-            <div class="product-card" tabindex="0" aria-label="HULM, nouveau produit">
-                <span class="urgency-badge" aria-live="polite">NOUVEAU</span>
-                <div class="product-image-container"><img src="images/New Arrival/HULM.webp" alt="HULM, nouveau produit" class="product-image" loading="lazy"></div>
-                <div class="card-content">
-                  <h2 class="product-title">HULM</h2>
-                  <div class="price-section">
-                      <span class="current-price">149 DH</span>
-                      <span class="compare-price">199 DH</span>
-                  </div>
-                  <div class="free-delivery">LIVRAISON GRATUITE</div>
-                </div>
-                <button class="buy-button" data-product="HULM" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
-            </div>
-            <div class="product-card" tabindex="0" aria-label="Coastal Club, nouveau produit">
-                <span class="urgency-badge" aria-live="polite">NOUVEAU</span>
-                <div class="product-image-container"><img src="images/New Arrival/COASTAL.webp" alt="Coastal Club, nouveau produit" class="product-image" loading="lazy"></div>
-                <div class="card-content">
-                  <h2 class="product-title">Coastal Club</h2>
-                  <div class="price-section">
-                      <span class="current-price">149 DH</span>
-                      <span class="compare-price">199 DH</span>
-                  </div>
-                  <div class="free-delivery">LIVRAISON GRATUITE</div>
-                </div>
-                <button class="buy-button" data-product="Coastal Club" style="margin-top: 10px; background: #17692a;">COMMANDER MAINTENANT</button>
+                <button class="buy-button" data-product="Lost tale" style="margin-top: 10px; background:#17692a;">COMMANDER MAINTENANT</button>
             </div>
         </div>
     </section>
