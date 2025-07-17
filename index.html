@@ -157,15 +157,14 @@
             }
             .products-section {
                 padding: 10px 2vw;
-                width: 100vw;
+                width: 100%;
                 box-sizing: border-box;
             }
             .products-grid {
-                width: 100vw;
-                margin-left: -2vw;
-                margin-right: -2vw;
+                width: 100%;
                 box-sizing: border-box;
-                grid-template-columns: repeat(2, 1fr); /* CHANGED: 2 per row for mobile */
+                grid-template-columns: repeat(2, 1fr); /* 2 per row for mobile */
+                gap: 10px;
             }
             body {
                 width: 100vw;
@@ -550,7 +549,7 @@
 <body>
     <header class="header" role="banner">
         <div class="logo" tabindex="0" aria-label="BLAZE, retour à l'accueil" style="display:flex;justify-content:center;align-items:center;">
-            <img src="images/Logo/Logo.png" alt="BLAZE logo" style="height:48px;vertical-align:middle;">
+            <img src="images/Logo/LOGO.png" alt="BLAZE logo" style="height:48px;vertical-align:middle;">
         </div>
     </header>
     <div id="toast" style="position:fixed;left:50%;bottom:40px;transform:translateX(-50%);background:#222;color:#fff;padding:14px 28px;border-radius:24px;font-size:16px;z-index:9999;display:none;box-shadow:0 4px 24px rgba(0,0,0,0.18);transition:opacity 0.3s;opacity:0;pointer-events:none;max-width:90vw;text-align:center;"></div>
